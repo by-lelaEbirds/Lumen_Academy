@@ -82,16 +82,16 @@ header {
 }
 /* Estilo da Logo - MAIS QUE O DOBRO DO DOBRO! */
 .logo {
-  width: 100px; /* Tamanho da logo novamente aumentado para ser bem proeminente */
-  height: 100px;
+  width: 120px; /* Aumentado ainda mais para ser bem proeminente */
+  height: 120px;
   display: flex;
   align-items: center;
   justify-content: center;
-  filter: drop-shadow(0 0 14px rgba(212, 175, 55, 0.7)); /* Sombra um pouco mais intensa */
+  filter: drop-shadow(0 0 16px rgba(212, 175, 55, 0.8)); /* Sombra ainda mais intensa */
   transition: filter 0.3s ease;
 }
 .logo:hover {
-  filter: drop-shadow(0 0 20px rgba(212, 175, 55, 1)); /* Sombra ainda mais intensa no hover */
+  filter: drop-shadow(0 0 24px rgba(212, 175, 55, 1)); /* Sombra máxima no hover */
 }
 .logo img {
   width: 100%;
@@ -99,7 +99,7 @@ header {
   object-fit: contain;
 }
 .brand h1 {
-  font: 800 clamp(1.6rem, 4vw, 2.2rem) Merriweather, serif; /* Ajustado para acompanhar o novo tamanho da logo */
+  font: 800 clamp(1.8rem, 4vw, 2.5rem) Merriweather, serif; /* Ajustado para acompanhar o novo tamanho da logo */
   letter-spacing: 0.8px;
 }
 .menu {
