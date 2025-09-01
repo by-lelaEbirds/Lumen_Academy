@@ -2,7 +2,7 @@
 const menuBtn = document.getElementById("menuBtn");
 const menu = document.getElementById("menu");
 
-menuBtn.addEventListener("click", () => {
+menuBtn?.addEventListener("click", () => {
   const open = menu.classList.toggle("open");
   menuBtn.setAttribute("aria-expanded", open);
 });
@@ -33,3 +33,27 @@ function closeModal() {
 function joinGroup() {
   alert("Link do grupo enviado para seu e‑mail cadastrado.");
 }
+
+// ANIMAÇÃO DE SCROLL (NOVO)
+document.addEventListener("DOMContentLoaded", () => {
+  const fadeInElements = document.querySelectorAll(".fade-in");
+
+  const observerOptions = {
+    root: null, // usa o viewport como área de observação
+    rootMargin: "0px",
+    threshold: 0.1 // aciona quando 10% do elemento está visível
+  };
+
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        observer.unobserve(entry.target); // para a observação após animar
+      }
+    });
+  }, observerOptions);
+
+  fadeInElements.forEach(el => {
+    observer.observe(el);
+  });
+});
