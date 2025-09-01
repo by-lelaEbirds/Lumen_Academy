@@ -17,8 +17,8 @@ body {
   margin: 0;
   font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial,
     sans-serif;
-  color: var(--gray-700);
-  background: var(--gray-100);
+  color: var(--gray-400); /* Ajustado para texto claro */
+  background: var(--navy); /* Fundo azul escuro aplicado */
 }
 a {
   color: inherit;
@@ -177,7 +177,7 @@ section {
 }
 .section-title {
   font: 800 clamp(22px, 4vw, 34px) Merriweather, serif;
-  color: var(--navy);
+  color: var(--white); /* Ajustado para branco para ser visível */
   margin: 0 0 8px;
 }
 .section-kicker {
@@ -203,7 +203,7 @@ section {
 }
 
 .card {
-  background: #fff;
+  background: #fff; /* Mantido branco para contraste */
   border-radius: 18px;
   border: 1px solid #e6e8ee;
   box-shadow: 0 6px 14px rgba(10, 29, 58, 0.06);
