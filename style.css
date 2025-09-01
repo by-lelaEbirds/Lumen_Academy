@@ -80,18 +80,18 @@ header {
   align-items: center;
   gap: 0.8rem;
 }
-/* Estilo da Logo ajustado - Aumentado e sem quadrado */
+/* Estilo da Logo - MAIS QUE O DOBRO DO DOBRO! */
 .logo {
-  width: 80px; /* Mais que o dobro do tamanho anterior (era 36px, depois 48px) */
-  height: 80px;
+  width: 100px; /* Tamanho da logo novamente aumentado para ser bem proeminente */
+  height: 100px;
   display: flex;
   align-items: center;
   justify-content: center;
-  filter: drop-shadow(0 0 12px rgba(212, 175, 55, 0.6));
+  filter: drop-shadow(0 0 14px rgba(212, 175, 55, 0.7)); /* Sombra um pouco mais intensa */
   transition: filter 0.3s ease;
 }
 .logo:hover {
-  filter: drop-shadow(0 0 18px rgba(212, 175, 55, 0.9));
+  filter: drop-shadow(0 0 20px rgba(212, 175, 55, 1)); /* Sombra ainda mais intensa no hover */
 }
 .logo img {
   width: 100%;
@@ -99,7 +99,7 @@ header {
   object-fit: contain;
 }
 .brand h1 {
-  font: 800 clamp(1.3rem, 3vw, 1.8rem) Merriweather, serif; /* Ajuste para acompanhar o tamanho da logo */
+  font: 800 clamp(1.6rem, 4vw, 2.2rem) Merriweather, serif; /* Ajustado para acompanhar o novo tamanho da logo */
   letter-spacing: 0.8px;
 }
 .menu {
@@ -234,7 +234,7 @@ section {
   color: #475569;
 }
 
-/* Destaques (segurança, biblioteca, infra) */
+/* Destaques (segurança, biblioteca, infra) - Corrigido o problema do texto sobreposto */
 .highlights {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -248,19 +248,24 @@ section {
 .highlight {
   position: relative;
   overflow: hidden;
-  display: flex; /* Flexbox para arrumar layout interno */
-  flex-direction: column;
-  justify-content: flex-start; /* Alinha o conteúdo ao topo */
-  align-items: flex-start; /* Alinha itens à esquerda */
+  display: flex;
+  flex-direction: column; /* Garante que imagem e texto fiquem em colunas */
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding-bottom: 20px; /* Adiciona um padding extra para garantir espaço para o texto */
 }
 .highlight img {
   margin-bottom: 12px;
   border-radius: 20px;
-  width: 100%; /* Garante que a imagem ocupe a largura total do card */
-  height: auto; /* Mantém a proporção */
+  width: 100%;
+  height: auto;
+  object-fit: cover; /* Garante que a imagem cubra a área sem distorcer, cortando se necessário */
+  min-height: 180px; /* Garante uma altura mínima para as imagens de destaque */
 }
 .highlight p {
-  line-height: 1.5; /* Melhora a legibilidade do parágrafo */
+  line-height: 1.5;
+  margin-top: 0; /* Remove margem superior extra para evitar sobreposição */
+  flex-grow: 1; /* Permite que o parágrafo ocupe o espaço restante */
 }
 .highlight .ribbon {
   position: absolute;
