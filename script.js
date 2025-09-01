@@ -1,23 +1,32 @@
-// Funções do site
-function handleSubmit(event) {
-    event.preventDefault();
-    // código de envio do formulário
-}
+// Toggle do menu mobile
+const menuBtn = document.getElementById("menuBtn");
+const menu = document.getElementById("menu");
+menuBtn?.addEventListener("click", () => {
+  const open = menu.classList.toggle("open");
+  menuBtn.setAttribute("aria-expanded", open);
+});
 
-function handleLead(event) {
-    event.preventDefault();
-    // código de envio do lead
+// Formulários (simulação)
+function handleSubmit(e) {
+  e.preventDefault();
+  alert("Obrigado! Em breve nossa equipe confirmará sua visita.");
+  return false;
+}
+function handleLead(e) {
+  e.preventDefault();
+  alert("E‑book enviado para seu e‑mail. Bem‑vindo à newsletter Lumen!");
+  closeModal();
+  return false;
 }
 
 function openModal() {
-    document.getElementById('modal').style.display = 'grid';
+  document.getElementById("modal").style.display = "grid";
 }
-
 function closeModal() {
-    document.getElementById('modal').style.display = 'none';
+  document.getElementById("modal").style.display = "none";
 }
 
+// CTA de grupo (simulado)
 function joinGroup() {
-    // código para redirecionar ao grupo do WhatsApp/Telegram
+  alert("Link do grupo enviado para seu e‑mail cadastrado.");
 }
-
