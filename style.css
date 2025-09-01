@@ -36,14 +36,14 @@ img {
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
-  padding: 0.9rem 1.5rem; /* Aumentado o padding lateral */
-  border-radius: 999px;   /* Borda totalmente arredondada */
+  padding: 0.9rem 1.5rem;
+  border-radius: 999px;
   border: 1px solid transparent;
   font-weight: 600;
   transition: 0.25s box-shadow, 0.25s transform, 0.25s background;
 }
 .btn:hover {
-  transform: translateY(-2px); /* Efeito de flutuar mais evidente */
+  transform: translateY(-2px);
   box-shadow: var(--shadow);
 }
 .btn-primary {
@@ -80,17 +80,27 @@ header {
   align-items: center;
   gap: 0.8rem;
 }
-/* Estilo da Logo ajustado */
+/* Estilo da Logo ajustado - Removido o quadrado e aumentado o tamanho */
 .logo {
-  width: 48px;  /* Tamanho aumentado */
-  height: 48px;
+  width: 60px; /* Tamanho da logo aumentado */
+  height: 60px;
+  display: flex; /* Para centralizar a imagem se necessário */
+  align-items: center;
+  justify-content: center;
+  /* Adicionado uma sombra suave para o efeito "Lumen" */
+  filter: drop-shadow(0 0 12px rgba(212, 175, 55, 0.6));
+  transition: filter 0.3s ease; /* Animação na sombra ao passar o mouse */
+}
+.logo:hover {
+  filter: drop-shadow(0 0 18px rgba(212, 175, 55, 0.9)); /* Sombra mais intensa no hover */
 }
 .logo img {
-  width: 100%;    /* Garante que a imagem preencha o container */
+  width: 100%;
   height: 100%;
+  object-fit: contain; /* Garante que a imagem se ajuste sem cortar */
 }
 .brand h1 {
-  font: 800 1.2rem Merriweather, serif; /* Fonte um pouco maior */
+  font: 800 1.3rem Merriweather, serif; /* Fonte um pouco maior */
   letter-spacing: 0.8px;
 }
 .menu {
@@ -99,7 +109,7 @@ header {
 }
 .menu a {
   opacity: 0.9;
-  transition: opacity 0.2s; /* Transição suave */
+  transition: opacity 0.2s;
 }
 .menu a:hover {
   opacity: 1;
@@ -108,7 +118,7 @@ header {
   display: none;
   border: 1px solid rgba(255, 255, 255, 0.25);
   padding: 0.5rem 0.6rem;
-  border-radius: 10px;
+  border-radius: 12px; /* Mais arredondado */
 }
 @media (max-width: 860px) {
   .menu {
@@ -120,7 +130,7 @@ header {
     position: absolute;
     left: 0;
     right: 0;
-    top: 76px; /* Ajustado para nova altura do header */
+    top: 76px;
     background: var(--navy);
     padding: 12px 6vw 20px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
@@ -174,7 +184,7 @@ header {
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.12);
   padding: 18px;
-  border-radius: 24px; /* Mais arredondado */
+  border-radius: 28px; /* Mais arredondado */
 }
 
 /* ====== SEÇÕES ====== */
@@ -210,7 +220,7 @@ section {
 
 .card {
   background: #fff;
-  border-radius: 24px; /* Mais arredondado */
+  border-radius: 28px; /* Mais arredondado */
   border: 1px solid #e6e8ee;
   box-shadow: 0 6px 14px rgba(10, 29, 58, 0.06);
   padding: 22px;
@@ -239,6 +249,14 @@ section {
 .highlight {
   position: relative;
   overflow: hidden;
+  /* Garante que o conteúdo dentro do card de destaque tenha espaço */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Empurra o texto para baixo */
+}
+.highlight img {
+  margin-bottom: 12px; /* Espaçamento entre imagem e texto */
+  border-radius: 20px; /* Arredondamento da imagem no destaque */
 }
 .highlight .ribbon {
   position: absolute;
@@ -255,9 +273,9 @@ section {
 
 /* CTA bloco */
 .cta {
-  background: #07142b; /* Cor sólida para diferenciar */
+  background: #07142b;
   color: #fff;
-  border-radius: 30px; /* Mais arredondado */
+  border-radius: 36px; /* Mais arredondado */
   padding: 28px;
   display: flex;
   align-items: center;
@@ -278,6 +296,22 @@ section {
   gap: 12px;
   flex-wrap: wrap;
 }
+/* Estilo para o ícone SVG dentro do CTA */
+.cta-icon { /* Nova classe para diferenciar do antigo .glyph da logo */
+  width: 84px;
+  height: 84px;
+  background: conic-gradient(
+    from 220deg at 50% 40%,
+    rgba(212, 175, 55, 0.55),
+    transparent 45%
+  );
+  border-radius: 28px; /* Mais arredondado */
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  flex-shrink: 0; /* Impede que o ícone diminua em telas menores */
+}
+
 
 /* Footer */
 footer {
@@ -298,22 +332,6 @@ footer a {
   .foot-grid {
     grid-template-columns: 1fr;
   }
-}
-
-/* ====== Ícone (livro + luz) - ANTIGO .glyph ====== */
-/* Este estilo agora só se aplica ao ícone SVG no bloco CTA */
-.glyph {
-  width: 84px;
-  height: 84px;
-  background: conic-gradient(
-    from 220deg at 50% 40%,
-    rgba(212, 175, 55, 0.55),
-    transparent 45%
-  );
-  border-radius: 22px;
-  display: grid;
-  place-items: center;
-  border: 1px solid rgba(212, 175, 55, 0.35);
 }
 
 /* ====== Form ====== */
