@@ -17,8 +17,8 @@ body {
   margin: 0;
   font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial,
     sans-serif;
-  color: var(--gray-400); /* Ajustado para texto claro */
-  background: var(--navy); /* Fundo azul escuro aplicado */
+  color: var(--gray-400);
+  background: var(--navy);
 }
 a {
   color: inherit;
@@ -36,14 +36,14 @@ img {
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
-  padding: 0.9rem 1.2rem;
-  border-radius: 14px;
+  padding: 0.9rem 1.5rem; /* Aumentado o padding lateral */
+  border-radius: 999px;   /* Borda totalmente arredondada */
   border: 1px solid transparent;
   font-weight: 600;
   transition: 0.25s box-shadow, 0.25s transform, 0.25s background;
 }
 .btn:hover {
-  transform: translateY(-1px);
+  transform: translateY(-2px); /* Efeito de flutuar mais evidente */
   box-shadow: var(--shadow);
 }
 .btn-primary {
@@ -80,12 +80,17 @@ header {
   align-items: center;
   gap: 0.8rem;
 }
+/* Estilo da Logo ajustado */
 .logo {
-  width: 44px;
-  height: 44px;
+  width: 48px;  /* Tamanho aumentado */
+  height: 48px;
+}
+.logo img {
+  width: 100%;    /* Garante que a imagem preencha o container */
+  height: 100%;
 }
 .brand h1 {
-  font: 800 1.1rem Merriweather, serif;
+  font: 800 1.2rem Merriweather, serif; /* Fonte um pouco maior */
   letter-spacing: 0.8px;
 }
 .menu {
@@ -94,6 +99,7 @@ header {
 }
 .menu a {
   opacity: 0.9;
+  transition: opacity 0.2s; /* Transição suave */
 }
 .menu a:hover {
   opacity: 1;
@@ -114,7 +120,7 @@ header {
     position: absolute;
     left: 0;
     right: 0;
-    top: 64px;
+    top: 76px; /* Ajustado para nova altura do header */
     background: var(--navy);
     padding: 12px 6vw 20px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
@@ -168,7 +174,7 @@ header {
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.12);
   padding: 18px;
-  border-radius: 18px;
+  border-radius: 24px; /* Mais arredondado */
 }
 
 /* ====== SEÇÕES ====== */
@@ -177,7 +183,7 @@ section {
 }
 .section-title {
   font: 800 clamp(22px, 4vw, 34px) Merriweather, serif;
-  color: var(--white); /* Ajustado para branco para ser visível */
+  color: var(--white);
   margin: 0 0 8px;
 }
 .section-kicker {
@@ -203,8 +209,8 @@ section {
 }
 
 .card {
-  background: #fff; /* Mantido branco para contraste */
-  border-radius: 18px;
+  background: #fff;
+  border-radius: 24px; /* Mais arredondado */
   border: 1px solid #e6e8ee;
   box-shadow: 0 6px 14px rgba(10, 29, 58, 0.06);
   padding: 22px;
@@ -249,9 +255,9 @@ section {
 
 /* CTA bloco */
 .cta {
-  background: linear-gradient(180deg, #0a1d3a, #0a1d3a);
+  background: #07142b; /* Cor sólida para diferenciar */
   color: #fff;
-  border-radius: 22px;
+  border-radius: 30px; /* Mais arredondado */
   padding: 28px;
   display: flex;
   align-items: center;
@@ -294,10 +300,8 @@ footer a {
   }
 }
 
-/* ====== Ícone (livro + luz) ====== */
-.logo svg {
-  filter: drop-shadow(0 3px 10px rgba(212, 175, 55, 0.35));
-}
+/* ====== Ícone (livro + luz) - ANTIGO .glyph ====== */
+/* Este estilo agora só se aplica ao ícone SVG no bloco CTA */
 .glyph {
   width: 84px;
   height: 84px;
@@ -327,10 +331,21 @@ footer a {
   background: #fff;
   border: 1px solid #e6e8ee;
   padding: 0.9rem 1rem;
-  border-radius: 14px;
+  border-radius: 999px; /* Totalmente arredondado */
   font: 500 1rem Inter;
 }
 .note {
   font-size: 0.85rem;
   color: var(--gray-400);
+}
+
+/* ====== ANIMAÇÃO DE SCROLL ====== */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
