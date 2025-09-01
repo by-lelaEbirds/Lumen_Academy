@@ -1,7 +1,8 @@
 // Toggle do menu mobile
 const menuBtn = document.getElementById("menuBtn");
 const menu = document.getElementById("menu");
-menuBtn?.addEventListener("click", () => {
+
+menuBtn.addEventListener("click", () => {
   const open = menu.classList.toggle("open");
   menuBtn.setAttribute("aria-expanded", open);
 });
@@ -12,6 +13,7 @@ function handleSubmit(e) {
   alert("Obrigado! Em breve nossa equipe confirmará sua visita.");
   return false;
 }
+
 function handleLead(e) {
   e.preventDefault();
   alert("E‑book enviado para seu e‑mail. Bem‑vindo à newsletter Lumen!");
@@ -19,6 +21,7 @@ function handleLead(e) {
   return false;
 }
 
+// Modal
 function openModal() {
   document.getElementById("modal").style.display = "grid";
 }
