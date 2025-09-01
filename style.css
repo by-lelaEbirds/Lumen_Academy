@@ -1,15 +1,336 @@
-/* Insira aqui o CSS do seu site */
+:root {
+  --navy: #0a1d3a;
+  --gold: #d4af37;
+  --white: #ffffff;
+  --gray-100: #f5f7fb;
+  --gray-400: #94a3b8;
+  --gray-700: #334155;
+  --shadow: 0 10px 30px rgba(10, 29, 58, 0.25);
+}
+* {
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
 body {
-  font-family: 'Inter', sans-serif;
-  margin: 0;
-  padding: 0;
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial,
+    sans-serif;
+  color: var(--gray-700);
+  background: var(--gray-100);
 }
-
+a {
+  color: inherit;
+  text-decoration: none;
+}
+img {
+  max-width: 100%;
+  display: block;
+}
 .container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
+  width: min(1120px, 92vw);
+  margin-inline: auto;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.9rem 1.2rem;
+  border-radius: 14px;
+  border: 1px solid transparent;
+  font-weight: 600;
+  transition: 0.25s box-shadow, 0.25s transform, 0.25s background;
+}
+.btn:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow);
+}
+.btn-primary {
+  background: var(--gold);
+  color: var(--navy);
+}
+.btn-outline {
+  background: transparent;
+  border-color: var(--gold);
+  color: var(--gold);
 }
 
-/* Continue com o restante do CSS que estava no <style> do HTML */
+/* ====== HEADER ====== */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: linear-gradient(
+    180deg,
+    rgba(10, 29, 58, 0.9),
+    rgba(10, 29, 58, 0.75)
+  );
+  backdrop-filter: saturate(1.2) blur(6px);
+}
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 0;
+  color: var(--white);
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+.logo {
+  width: 44px;
+  height: 44px;
+}
+.brand h1 {
+  font: 800 1.1rem Merriweather, serif;
+  letter-spacing: 0.8px;
+}
+.menu {
+  display: flex;
+  gap: 1.2rem;
+}
+.menu a {
+  opacity: 0.9;
+}
+.menu a:hover {
+  opacity: 1;
+}
+.menu-toggle {
+  display: none;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  padding: 0.5rem 0.6rem;
+  border-radius: 10px;
+}
+@media (max-width: 860px) {
+  .menu {
+    display: none;
+  }
+  .menu.open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 64px;
+    background: var(--navy);
+    padding: 12px 6vw 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .menu-toggle {
+    display: block;
+  }
+}
 
+/* ====== HERO ====== */
+.hero {
+  background: radial-gradient(
+      80% 120% at 50% 0%,
+      rgba(212, 175, 55, 0.18),
+      transparent 60%
+    ),
+    linear-gradient(180deg, var(--navy), #07142b);
+  color: var(--white);
+  padding: 88px 0 64px;
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 48px;
+  align-items: center;
+}
+.hero h2 {
+  font: 900 clamp(28px, 5vw, 46px) Merriweather, serif;
+  margin: 0 0 12px;
+  color: #fff;
+}
+.hero p {
+  font-size: 1.05rem;
+  opacity: 0.92;
+  line-height: 1.6;
+}
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 18px 0 26px;
+}
+.badge {
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 999px;
+  padding: 0.4rem 0.7rem;
+  font-size: 0.86rem;
+  opacity: 0.95;
+}
+.hero-card {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 18px;
+  border-radius: 18px;
+}
+
+/* ====== SEÇÕES ====== */
+section {
+  padding: 72px 0;
+}
+.section-title {
+  font: 800 clamp(22px, 4vw, 34px) Merriweather, serif;
+  color: var(--navy);
+  margin: 0 0 8px;
+}
+.section-kicker {
+  color: var(--gold);
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  font-size: 0.78rem;
+  margin-bottom: 6px;
+}
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+@media (max-width: 900px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+  }
+  .grid-3 {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  background: #fff;
+  border-radius: 18px;
+  border: 1px solid #e6e8ee;
+  box-shadow: 0 6px 14px rgba(10, 29, 58, 0.06);
+  padding: 22px;
+}
+.card h3 {
+  margin: 0 0 8px;
+  font: 700 1.05rem/1.3 Merriweather, serif;
+  color: var(--navy);
+}
+.card p {
+  margin: 0;
+  color: #475569;
+}
+
+/* Destaques (segurança, biblioteca, infra) */
+.highlights {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+}
+@media (max-width: 900px) {
+  .highlights {
+    grid-template-columns: 1fr;
+  }
+}
+.highlight {
+  position: relative;
+  overflow: hidden;
+}
+.highlight .ribbon {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  background: var(--gold);
+  color: var(--navy);
+  padding: 0.35rem 0.6rem;
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+}
+
+/* CTA bloco */
+.cta {
+  background: linear-gradient(180deg, #0a1d3a, #0a1d3a);
+  color: #fff;
+  border-radius: 22px;
+  padding: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.cta h3 {
+  font: 800 1.4rem Merriweather, serif;
+  margin: 0;
+}
+.cta p {
+  opacity: 0.9;
+  margin: 6px 0 14px;
+}
+.cta .actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* Footer */
+footer {
+  background: #07142b;
+  color: #cbd5e1;
+  padding: 40px 0;
+  margin-top: 26px;
+}
+footer a {
+  color: #e2e8f0;
+}
+.foot-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 20px;
+}
+@media (max-width: 900px) {
+  .foot-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ====== Ícone (livro + luz) ====== */
+.logo svg {
+  filter: drop-shadow(0 3px 10px rgba(212, 175, 55, 0.35));
+}
+.glyph {
+  width: 84px;
+  height: 84px;
+  background: conic-gradient(
+    from 220deg at 50% 40%,
+    rgba(212, 175, 55, 0.55),
+    transparent 45%
+  );
+  border-radius: 22px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(212, 175, 55, 0.35);
+}
+
+/* ====== Form ====== */
+.form {
+  display: grid;
+  grid-template-columns: 2fr 2fr 1fr;
+  gap: 10px;
+}
+@media (max-width: 760px) {
+  .form {
+    grid-template-columns: 1fr;
+  }
+}
+.input {
+  background: #fff;
+  border: 1px solid #e6e8ee;
+  padding: 0.9rem 1rem;
+  border-radius: 14px;
+  font: 500 1rem Inter;
+}
+.note {
+  font-size: 0.85rem;
+  color: var(--gray-400);
+}
