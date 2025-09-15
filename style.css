@@ -223,8 +223,12 @@ section {
 }
 
 /* ====== SOBRE ====== */
-#sobre .container > p { /* Centraliza o parágrafo da seção Sobre */
-    max-width: 80ch; /* Limita a largura do texto para melhor legibilidade */
+#sobre .section-kicker,
+#sobre .section-title {
+    text-align: center; /* Centraliza títulos da seção Sobre */
+}
+#sobre .container > p {
+    max-width: 80ch;
     margin-left: auto;
     margin-right: auto;
     text-align: center;
@@ -232,18 +236,22 @@ section {
 .dante-images {
   display: flex;
   gap: 22px;
-  justify-content: center; /* Centraliza as imagens */
+  justify-content: center;
 }
 .dante-img {
   border-radius: 20px;
-  width: 45%; /* Define a largura para que caibam duas lado a lado */
-  max-width: 400px; /* Limita o tamanho máximo */
-  height: auto; /* Altura automática para manter proporção */
+  width: 45%;
+  max-width: 400px;
+  height: auto;
   object-fit: cover;
   box-shadow: var(--shadow-light);
 }
 
 /* ====== LEGADO DE DANTE (ACCORDION) ====== */
+#legado .section-kicker,
+#legado .section-title {
+    text-align: center; /* Centraliza títulos da seção Legado */
+}
 .accordion {
     margin-top: 24px;
     border: 1px solid rgba(212, 175, 55, 0.2);
@@ -332,6 +340,18 @@ section {
   width: 100%;
   height: auto; /* Revertido para altura automática */
   object-fit: cover;
+}
+.highlight p {
+    margin-top: 20px; /* Aumenta espaço entre imagem e texto */
+    font-size: 0.95rem; /* Levemente maior para legibilidade */
+    line-height: 1.6;
+    color: var(--gray-700);
+    transition: transform 0.4s ease, opacity 0.4s ease; /* Transição suave */
+    opacity: 0.85; /* Levemente apagado no estado inicial */
+}
+.highlight:hover p {
+    opacity: 1; /* Opacidade total no hover */
+    transform: translateY(-4px); /* Sobe sutilmente no hover */
 }
 
 /* ====== CTA ====== */
