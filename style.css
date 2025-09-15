@@ -140,11 +140,26 @@ header {
 }
 .menu a {
   opacity: 0.9;
-  transition: opacity 0.2s;
+  transition: opacity 0.2s, color 0.2s;
+  position: relative;
+  padding-bottom: 3px; /* Espaço para o sublinhado */
+}
+.menu a::after { /* Sublinhado animado */
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--gold);
+  transition: width 0.3s ease-out;
 }
 .menu a:hover {
   opacity: 1;
   color: var(--gold);
+}
+.menu a:hover::after {
+  width: 100%;
 }
 
 /* Menu Toggle Animado */
@@ -156,6 +171,7 @@ header {
   height: 22px;
   position: relative;
   cursor: pointer;
+  z-index: 50; /* Garante que o botão fique acima do menu quando aberto */
 }
 .menu-toggle span {
   display: block;
@@ -226,6 +242,9 @@ header {
   border: 1px solid rgba(255, 255, 255, 0.12);
   padding: 18px;
   border-radius: 28px;
+}
+.hero-card img {
+  border-radius: 20px; /* Borda arredondada para a imagem do herói */
 }
 
 /* ====== SEÇÕES ====== */
@@ -347,6 +366,9 @@ footer a:hover {
   grid-template-columns: 1.5fr 1fr 1fr;
   gap: 20px;
 }
+.foot-grid .brand h1 {
+  margin: 0; /* Aplicando a margem aqui */
+}
 
 /* ====== Form ====== */
 .form {
@@ -431,6 +453,13 @@ footer a:hover {
     background: var(--navy);
     padding: 12px 6vw 20px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .menu a {
+    padding: 10px 0; /* Ajusta o padding para melhor toque no mobile */
+    text-align: center;
+  }
+  .menu a::after {
+    display: none; /* Desativa o sublinhado animado no mobile para não interferir */
   }
   .menu-toggle {
     display: block;
