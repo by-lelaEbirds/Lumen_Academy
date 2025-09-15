@@ -6,20 +6,24 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.classList.add("loaded");
   });
 
+  // --- EFEITO PARALLAX ---
+  const hero = document.querySelector('.hero');
+  window.addEventListener('scroll', () => {
+      const scrollPosition = window.pageYOffset;
+      hero.style.backgroundPositionY = scrollPosition * 0.5 + 'px';
+  });
+
   // --- MENU MOBILE ---
   const menuBtn = document.getElementById("menuBtn");
   const menu = document.getElementById("menu");
   menuBtn?.addEventListener("click", () => {
     menu.classList.toggle("open");
     menuBtn.classList.toggle("open");
-    const isExpanded = menu.classList.contains("open");
-    menuBtn.setAttribute("aria-expanded", isExpanded);
+    menuBtn.setAttribute("aria-expanded", menu.classList.contains("open"));
   });
-  
-  // Fecha o menu ao clicar em um link
   menu?.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
-      if(menu.classList.contains('open')) {
+      if (menu.classList.contains('open')) {
         menu.classList.remove('open');
         menuBtn.classList.remove('open');
         menuBtn.setAttribute("aria-expanded", false);
@@ -29,98 +33,87 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // --- MODAL ---
   const modal = document.getElementById("modal");
-  const openModalBtns = document.querySelectorAll("#openModalBtnHero, #openModalBtnCta, #openModalBtnLead");
+  const openModalBtns = document.querySelectorAll("#openModalBtnHero, #openModalBtnCta");
   const closeModalBtn = document.getElementById("closeModalBtn");
-
   const openModal = () => modal.classList.add("visible");
   const closeModal = () => modal.classList.remove("visible");
-
   openModalBtns.forEach(btn => btn.addEventListener("click", openModal));
   closeModalBtn?.addEventListener("click", closeModal);
-  modal?.addEventListener("click", (e) => {
-    if (e.target === modal) closeModal(); // Fecha se clicar fora do conteúdo
-  });
-  document.addEventListener('keydown', (e) => {
-    if (e.key === "Escape" && modal.classList.contains('visible')) {
-        closeModal();
-    }
-  });
+  modal?.addEventListener("click", (e) => e.target === modal && closeModal());
+  document.addEventListener('keydown', (e) => e.key === "Escape" && modal.classList.contains('visible') && closeModal());
 
-  // --- FUNÇÕES DE FORMULÁRIO E CTA ---
-  const formAdmissoes = document.getElementById("form-admissoes");
-  const formLead = document.getElementById("form-lead");
-  const joinGroupBtn = document.getElementById("joinGroupBtn");
-
+  // --- FORMULÁRIOS E CTAs ---
   const handleFormSubmit = (e, successMessage) => {
     e.preventDefault();
-    const form = e.target;
-    const note = form.nextElementSibling;
-    const originalNoteText = note.textContent;
-    const submitButton = form.querySelector('button[type="submit"]');
-    const originalButtonText = submitButton.textContent;
-
-    submitButton.disabled = true;
-    submitButton.textContent = "Enviando...";
-
+    const form = e.target, note = form.nextElementSibling, originalNoteText = note.textContent;
+    const btn = form.querySelector('button[type="submit"]'), originalBtnText = btn.textContent;
+    btn.disabled = true; btn.textContent = "Enviando...";
     setTimeout(() => {
-      form.reset();
-      submitButton.disabled = false;
-      submitButton.textContent = originalButtonText;
-
-      if (note) {
-        note.textContent = successMessage;
-        note.style.color = "var(--gold)";
-      }
-      
-      if(form.id === 'form-lead') {
-        setTimeout(closeModal, 2000); // Fecha modal após sucesso
-      }
-
-      // Restaura a mensagem original após alguns segundos
-      setTimeout(() => {
-        if (note) {
-          note.textContent = originalNoteText;
-          note.style.color = "var(--gray-400)";
-        }
-      }, 5000);
-
+      form.reset(); btn.disabled = false; btn.textContent = originalBtnText;
+      if (note) { note.textContent = successMessage; note.style.color = "var(--gold)"; }
+      if (form.id === 'form-lead') setTimeout(closeModal, 2000);
+      setTimeout(() => { if (note) { note.textContent = originalNoteText; note.style.color = ""; } }, 5000);
     }, 1500);
   };
+  document.getElementById("form-admissoes")?.addEventListener("submit", (e) => handleFormSubmit(e, "Obrigado! Em breve confirmaremos sua visita."));
+  document.getElementById("form-lead")?.addEventListener("submit", (e) => handleFormSubmit(e, "E-book enviado! Bem-vindo(a) à Lumen."));
+
+  // --- ACCORDION ---
+  const accordionItems = document.querySelectorAll(".accordion-item");
+  accordionItems.forEach(item => {
+    const header = item.querySelector(".accordion-header");
+    header.addEventListener("click", () => {
+        const content = item.querySelector(".accordion-content");
+        item.classList.toggle('active');
+        if (item.classList.contains('active')) {
+            content.style.maxHeight = content.scrollHeight + "px";
+            content.style.padding = "0 24px 18px";
+        } else {
+            content.style.maxHeight = "0";
+            content.style.padding = "0 24px";
+        }
+    });
+  });
   
-  const handleJoinGroup = (e) => {
-     const button = e.target;
-     button.textContent = "Link enviado!";
-     button.disabled = true;
-     
-     setTimeout(() => {
-        button.textContent = "Entrar no grupo";
-        button.disabled = false;
-     }, 3000);
-  }
-
-  formAdmissoes?.addEventListener("submit", (e) => handleFormSubmit(e, "Obrigado! Em breve nossa equipe confirmará sua visita."));
-  formLead?.addEventListener("submit", (e) => handleFormSubmit(e, "E-book enviado! Bem-vindo(a) à newsletter Lumen."));
-  joinGroupBtn?.addEventListener('click', handleJoinGroup);
-
-
-  // --- ANIMAÇÃO DE SCROLL (IntersectionObserver) ---
+  // --- ANIMAÇÕES DE SCROLL (IntersectionObserver) ---
   const fadeInElements = document.querySelectorAll(".fade-in");
-  const observerOptions = {
-    root: null,
-    rootMargin: "0px",
-    threshold: 0.1,
-  };
+  const statsSection = document.getElementById("stats");
+  let statsAnimated = false;
 
-  const observer = new IntersectionObserver((entries, observer) => {
+  const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
+        // Animação fade-in
         entry.target.classList.add("visible");
-        observer.unobserve(entry.target);
+
+        // Animação dos contadores
+        if (entry.target.id === 'stats' && !statsAnimated) {
+            const counters = document.querySelectorAll(".stat-number");
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                let count = 0;
+                const updateCount = () => {
+                    const increment = target / 100; // Velocidade da animação
+                    if (count < target) {
+                        count += increment;
+                        counter.innerText = Math.ceil(count);
+                        requestAnimationFrame(updateCount);
+                    } else {
+                        counter.innerText = target;
+                    }
+                };
+                updateCount();
+            });
+            statsAnimated = true; // Garante que a animação ocorra apenas uma vez
+        }
+        
+        if(entry.target.classList.contains('fade-in')) {
+            observer.unobserve(entry.target);
+        }
       }
     });
-  }, observerOptions);
-
-  fadeInElements.forEach((el) => {
-    observer.observe(el);
-  });
+  }, { threshold: 0.1 });
+  
+  fadeInElements.forEach((el) => observer.observe(el));
+  if (statsSection) observer.observe(statsSection);
 });
