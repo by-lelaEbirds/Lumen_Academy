@@ -180,17 +180,6 @@ section {
 .card p {
   margin: 0; color: #475569;
 }
-.highlight {
-  position: relative; overflow: hidden;
-}
-.highlight img {
-  border-radius: 20px; width: 100%; height: 250px; object-fit: cover;
-}
-.highlight .ribbon {
-  position: absolute; top: 18px; left: 18px;
-  background: var(--gold); color: var(--navy); padding: 0.35rem 0.6rem;
-  border-radius: 999px; font-weight: 800; font-size: 0.72rem; letter-spacing: 0.14em;
-}
 
 /* ====== HERO (COM PARALLAX) ====== */
 .hero {
@@ -234,18 +223,24 @@ section {
 }
 
 /* ====== SOBRE ====== */
-.sobre-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 32px;
-    align-items: center;
+#sobre .container > p { /* Centraliza o parágrafo da seção Sobre */
+    max-width: 80ch; /* Limita a largura do texto para melhor legibilidade */
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
 }
 .dante-images {
-  display: flex; gap: 22px;
+  display: flex;
+  gap: 22px;
+  justify-content: center; /* Centraliza as imagens */
 }
 .dante-img {
-  border-radius: 20px; width: 100%; height: 250px;
-  object-fit: cover; box-shadow: var(--shadow-light);
+  border-radius: 20px;
+  width: 45%; /* Define a largura para que caibam duas lado a lado */
+  max-width: 400px; /* Limita o tamanho máximo */
+  height: auto; /* Altura automática para manter proporção */
+  object-fit: cover;
+  box-shadow: var(--shadow-light);
 }
 
 /* ====== LEGADO DE DANTE (ACCORDION) ====== */
@@ -254,6 +249,8 @@ section {
     border: 1px solid rgba(212, 175, 55, 0.2);
     border-radius: 16px;
     overflow: hidden;
+    max-width: 900px;
+    margin-inline: auto;
 }
 .accordion-item {
     border-bottom: 1px solid rgba(212, 175, 55, 0.2);
@@ -324,6 +321,19 @@ section {
     color: var(--gray-400);
 }
 
+/* ====== DESTAQUES (INFRA) ====== */
+.highlights {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+}
+.highlight img {
+  border-radius: 20px;
+  width: 100%;
+  height: auto; /* Revertido para altura automática */
+  object-fit: cover;
+}
+
 /* ====== CTA ====== */
 .cta {
   background: #07142b; color: #fff; border-radius: 36px;
@@ -338,10 +348,16 @@ section {
   opacity: 0.9; margin: 6px 0 14px;
 }
 .cta-icon {
-  width: 84px; height: 84px;
-  background: conic-gradient(from 220deg at 50% 40%, rgba(212, 175, 55, 0.55), transparent 45%);
-  border-radius: 28px; display: grid; place-items: center;
-  border: 1px solid rgba(212, 175, 55, 0.35); flex-shrink: 0;
+  width: 90px; height: 90px;
+  background: rgba(212, 175, 55, 0.1);
+  border-radius: 28px;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  flex-shrink: 0;
+  padding: 15px;
+}
+.cta-icon img {
+    filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.5));
 }
 
 /* ====== FOOTER ====== */
@@ -418,12 +434,18 @@ footer a:hover {
   .menu a { padding: 10px 0; text-align: center; }
   .menu a::after { display: none; }
   .menu-toggle { display: block; }
-  .hero-grid, .sobre-grid, .highlights, .grid-3, .stats-grid, .foot-grid {
+  .hero-grid, .highlights, .grid-3, .stats-grid, .foot-grid {
     grid-template-columns: 1fr;
   }
-  .hero-grid, .sobre-grid { gap: 32px; }
-  .dante-images { flex-direction: column; gap: 16px; }
-  .dante-img { height: 200px; }
+  .hero-grid, .dante-images { gap: 32px; }
+  .dante-images {
+      flex-direction: column;
+      align-items: center; /* Centraliza na vertical */
+  }
+  .dante-img {
+    width: 80%; /* Ajusta a largura no mobile */
+    max-width: 350px;
+  }
   .cta { flex-direction: column; text-align: center; }
   .foot-grid { text-align: center; }
   .foot-grid .brand { justify-content: center; }
