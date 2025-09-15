@@ -410,6 +410,12 @@ footer a:hover {
 .note {
   font-size: 0.85rem; color: var(--gray-400); transition: color 0.3s;
 }
+/* Ajuste específico para o formulário dentro do modal */
+.modal-content .form {
+    grid-template-columns: 1fr; /* Força os itens a ficarem um abaixo do outro */
+    gap: 12px; /* Adiciona um espaço vertical entre eles */
+}
+
 
 /* ====== MODAL ====== */
 .modal-overlay {
