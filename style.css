@@ -249,7 +249,7 @@ header {
 
 /* ====== SEÇÕES ====== */
 main > section {
-  padding: 72px 0;
+  padding: 64px 0; /* Ajuste para reduzir o espaçamento vertical entre as seções */
 }
 .section-title {
   font: 800 clamp(22px, 4vw, 34px) Merriweather, serif;
@@ -320,6 +320,20 @@ main > section {
   letter-spacing: 0.14em;
 }
 
+/* Imagens de Dante Alighieri */
+.dante-images {
+    display: flex;
+    gap: 22px;
+    margin-top: 32px; /* Aumenta um pouco a margem para separar do texto */
+}
+.dante-img {
+    border-radius: 20px;
+    width: 100%; /* Para garantir que ocupem o espaço disponível */
+    height: 300px; /* Altura fixa para consistência */
+    object-fit: cover; /* Recorta a imagem para cobrir a área */
+    box-shadow: var(--shadow-light); /* Adiciona uma sombra para destaque */
+}
+
 /* CTA bloco */
 .cta {
   background: #07142b;
@@ -367,7 +381,7 @@ footer a:hover {
   gap: 20px;
 }
 .foot-grid .brand h1 {
-  margin: 0; /* Aplicando a margem aqui */
+  margin: 0;
 }
 
 /* ====== Form ====== */
@@ -473,6 +487,13 @@ footer a:hover {
   }
   .highlights {
     grid-template-columns: 1fr;
+  }
+  .dante-images {
+      flex-direction: column; /* Imagens de Dante empilhadas no mobile */
+      gap: 16px;
+  }
+  .dante-img {
+      height: 200px; /* Altura ajustada para mobile */
   }
   .cta {
     flex-direction: column;
