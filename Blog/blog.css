@@ -1,0 +1,88 @@
+/* Estilos específicos para a página do Blog */
+
+.blog-main {
+    background-color: var(--navy);
+}
+
+.blog-hero {
+    padding: 60px 0;
+    text-align: center;
+    background: linear-gradient(rgba(10, 29, 58, 0.8), rgba(10, 29, 58, 0.9)), url(../hero-escola-lumen.jpg);
+    background-size: cover;
+    background-position: center;
+    color: var(--white);
+}
+
+.blog-hero p {
+    max-width: 60ch;
+    margin-inline: auto;
+    opacity: 0.9;
+}
+
+.blog-list {
+    padding: 60px 0;
+}
+
+.post-card {
+    background-color: #07142b;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    margin-bottom: 24px;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.post-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--gold);
+}
+
+.post-content {
+    padding: 24px 32px;
+}
+
+.post-category {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: var(--navy);
+    text-transform: uppercase;
+}
+
+.post-category.desejo { background-color: var(--gold); }
+.post-category.dor { background-color: #fca5a5; } /* Um tom de vermelho/alerta */
+.post-category.necessidade { background-color: #93c5fd; } /* Um tom de azul/informativo */
+
+.post-content h3 {
+    font-family: 'Merriweather', serif;
+    font-size: 1.6rem;
+    color: var(--white);
+    margin: 0;
+}
+
+.post-content p {
+    color: var(--gray-400);
+    line-height: 1.6;
+    margin-top: 8px;
+}
+
+.read-more {
+    display: inline-block;
+    margin-top: 16px;
+    color: var(--gold);
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform 0.2s ease;
+}
+
+.read-more:hover {
+    transform: translateX(4px);
+}
+
+/* Marca o link "Blog" como ativo no menu */
+.menu a.active {
+    color: var(--gold);
+    font-weight: 600;
+}
