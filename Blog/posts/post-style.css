@@ -1,1 +1,85 @@
-vv
+/* Estilos para a página de um post individual */
+
+.post-main {
+    background-color: var(--navy);
+    color: var(--gray-400);
+}
+
+.post-full {
+    padding-bottom: 4vw;
+}
+
+.post-header {
+    text-align: center;
+    padding: 60px 0;
+    color: var(--white);
+}
+
+.back-to-blog {
+    display: inline-block;
+    margin-bottom: 24px;
+    color: var(--gold);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.post-header .post-category {
+    margin-inline: auto;
+}
+
+.post-title {
+    font-family: 'Merriweather', serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin: 12px 0;
+    max-width: 800px;
+    margin-inline: auto;
+}
+
+.post-excerpt {
+    max-width: 65ch;
+    margin-inline: auto;
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+.post-feature-image {
+    margin: 0;
+    padding: 0;
+    height: 50vh;
+    max-height: 550px;
+}
+
+.post-feature-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.post-content {
+    padding-top: 40px;
+    max-width: 720px;
+    font-size: 1.1rem;
+    line-height: 1.7;
+}
+
+.post-content h2 {
+    font-family: 'Merriweather', serif;
+    color: var(--white);
+    font-size: 1.8rem;
+    margin-top: 2em;
+    margin-bottom: 0.8em;
+}
+
+.post-content p {
+    margin-bottom: 1.5em;
+}
+
+.post-content blockquote {
+    margin: 2em 0;
+    padding-left: 1.5em;
+    border-left: 3px solid var(--gold);
+    font-size: 1.2rem;
+    font-style: italic;
+    color: var(--white);
+    opacity: 0.9;
+}
