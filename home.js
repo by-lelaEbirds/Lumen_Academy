@@ -5,8 +5,6 @@ document.addEventListener("DOMContentLoaded", () => {
   if (preloader) {
     window.addEventListener("load", () => {
       preloader.classList.add("hidden");
-      // A classe .loaded é adicionada pelo global.js, mas garantimos aqui também.
-      document.body.classList.add("loaded");
     });
   }
 
@@ -19,21 +17,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // --- MODAL ---
-  const modal = document.getElementById("modal");
-  const openModalBtns = document.querySelectorAll("#openModalBtnHero, #openModalBtnCta");
-  const closeModalBtn = document.getElementById("closeModalBtn");
-  if (modal && openModalBtns.length > 0 && closeModalBtn) {
-    const openModal = () => modal.classList.add("visible");
-    const closeModal = () => modal.classList.remove("visible");
-    
-    openModalBtns.forEach(btn => btn.addEventListener("click", openModal));
-    closeModalBtn.addEventListener("click", closeModal);
-    modal.addEventListener("click", (e) => e.target === modal && closeModal());
-    document.addEventListener('keydown', (e) => e.key === "Escape" && modal.classList.contains('visible') && closeModal());
-  }
-
   // --- FORMULÁRIOS E CTAs ---
+  // Apenas a função para o formulário de Admissões permanece
   const handleFormSubmit = (e, successMessage) => {
     e.preventDefault();
     const form = e.target, note = form.nextElementSibling, originalNoteText = note ? note.textContent : "";
@@ -42,12 +27,6 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {
       form.reset(); btn.disabled = false; btn.textContent = originalBtnText;
       if (note) { note.textContent = successMessage; note.style.color = "var(--gold)"; }
-      if (form.id === 'form-lead') {
-        const modalToClose = document.getElementById("modal");
-        if(modalToClose) {
-          setTimeout(() => modalToClose.classList.remove("visible"), 2000);
-        }
-      }
       setTimeout(() => { if (note) { note.textContent = originalNoteText; note.style.color = ""; } }, 5000);
     }, 1500);
   };
@@ -55,11 +34,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const formAdmissoes = document.getElementById("form-admissoes");
   if (formAdmissoes) {
     formAdmissoes.addEventListener("submit", (e) => handleFormSubmit(e, "Obrigado! Em breve confirmaremos sua visita."));
-  }
-
-  const formLead = document.getElementById("form-lead");
-  if (formLead) {
-    formLead.addEventListener("submit", (e) => handleFormSubmit(e, "E-book enviado! Bem-vindo(a) à Lumen."));
   }
 
   // --- ACCORDION ---
@@ -81,7 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
   
-  // --- ANIMAÇÃO DOS CONTADORES (IntersectionObserver) ---
+  // --- ANIMAÇÃO DOS CONTADORES ---
   const statsSection = document.getElementById("stats");
   if(statsSection) {
     let statsAnimated = false;
@@ -107,7 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
           statsAnimated = true;
         }
       });
-    }, { threshold: 0.7 }); // 70% da seção visível para animar
+    }, { threshold: 0.7 });
     observer.observe(statsSection);
   }
 });
